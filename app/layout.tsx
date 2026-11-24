@@ -1,31 +1,26 @@
-import { Geist, Geist_Mono, Noto_Sans, EB_Garamond } from "next/font/google"
-
+import type { Metadata } from "next"
+import { Geist } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
-
-const ebGaramondHeading = EB_Garamond({subsets:['latin'],variable:'--font-heading'});
-
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+import "./rental.css"
+import { RentalProvider } from "@/components/rental-provider"
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-geist",
+  display: "swap",
 })
-
+export const metadata: Metadata = {
+  title: "ID Rental — Sewa Motor Banda Aceh, Aceh Besar & Sabang",
+  description:
+    "Temukan motor untuk perjalanan Anda bersama ID Rental. Pilih lokasi dan jadwal, lalu konfirmasikan melalui WhatsApp. Prototype presentasi.",
+  icons: { icon: "/images/id-rental-logo.jpg" },
+}
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, ebGaramondHeading.variable)}
-    >
+    <html lang="id" className={geist.variable}>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <RentalProvider>{children}</RentalProvider>
       </body>
     </html>
   )
